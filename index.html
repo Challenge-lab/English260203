@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>영어 단어 퀴즈</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <h1>영어 단어 퀴즈</h1>
+      <p class="subtitle">Vocabulary Quiz</p>
+    </header>
+
+    <!-- 시작 화면 -->
+    <section id="start-screen" class="screen active">
+      <div class="start-card">
+        <h2>퀴즈 설정</h2>
+        <div class="option-group">
+          <label>퀴즈 유형</label>
+          <select id="quiz-type">
+            <option value="word-to-meaning">영어 → 뜻 맞추기</option>
+            <option value="meaning-to-word">뜻 → 영어 맞추기</option>
+          </select>
+        </div>
+        <div class="option-group">
+          <label>문제 수</label>
+          <select id="quiz-count">
+            <option value="5">5문제</option>
+            <option value="10" selected>10문제</option>
+            <option value="15">15문제</option>
+            <option value="20">20문제</option>
+          </select>
+        </div>
+        <button id="start-btn" class="btn btn-primary">시작하기</button>
+      </div>
+    </section>
+
+    <!-- 퀴즈 화면 -->
+    <section id="quiz-screen" class="screen">
+      <div class="quiz-progress">
+        <span id="current-num">1</span> / <span id="total-num">10</span>
+        <div class="progress-bar"><div id="progress-fill" class="progress-fill"></div></div>
+      </div>
+      <div class="quiz-card">
+        <p id="quiz-question" class="quiz-question"></p>
+        <p id="quiz-hint" class="quiz-hint"></p>
+        <div id="choices" class="choices"></div>
+        <div id="feedback" class="feedback hidden"></div>
+        <button id="next-btn" class="btn btn-primary hidden">다음</button>
+      </div>
+    </section>
+
+    <!-- 결과 화면 -->
+    <section id="result-screen" class="screen">
+      <div class="result-card">
+        <h2>퀴즈 결과</h2>
+        <div class="score-display">
+          <span id="score-num">0</span> / <span id="score-total">10</span>
+          <p id="score-percent" class="score-percent">0%</p>
+        </div>
+        <p id="result-message" class="result-message"></p>
+        <button id="retry-btn" class="btn btn-primary">다시 하기</button>
+      </div>
+    </section>
+
+    <!-- 연락 버튼 (모든 화면에서 표시) -->
+    <div class="contact-cta-wrap">
+      <button type="button" id="contact-cta-btn" class="btn btn-contact">
+        영어를 쓰는 외국친구를 만나고 싶으면 눌러주세요!
+      </button>
+    </div>
+  </div>
+
+  <!-- 연락처 입력 모달 -->
+  <div id="contact-modal" class="modal-overlay" aria-hidden="true">
+    <div class="modal">
+      <button type="button" id="contact-modal-close" class="modal-close" aria-label="닫기">&times;</button>
+      <h2 class="modal-title">연락처를 남겨주세요</h2>
+      <p class="modal-desc">이름, 전화번호, 이메일을 입력하시면 연락드리겠습니다.</p>
+      <form id="contact-form" class="contact-form">
+        <div class="form-group">
+          <label for="contact-name">이름</label>
+          <input type="text" id="contact-name" name="name" required placeholder="홍길동" />
+        </div>
+        <div class="form-group">
+          <label for="contact-phone">전화번호</label>
+          <input type="tel" id="contact-phone" name="phone" required placeholder="010-0000-0000" />
+        </div>
+        <div class="form-group">
+          <label for="contact-email">이메일</label>
+          <input type="email" id="contact-email" name="email" required placeholder="example@email.com" />
+        </div>
+        <div id="contact-form-status" class="form-status hidden"></div>
+        <button type="submit" id="contact-submit" class="btn btn-primary">보내기</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="words.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
